@@ -16,11 +16,11 @@ const { getPlayers } = require("./data");
 // Your code
 const players = getPlayers();
 
-// players.forEach((player, index) =>
-//     console.log(`PLAYER ${index +1}`, 
-//                 `\nNAME: ${player.name}`, 
-//                 `\nLASTNAME: ${player.lastname}`,
-//                 `\nPOSITION: ${player.position}\n`));
+players.forEach((player, index) =>
+    console.log(`PLAYER ${index +1}`, 
+                `\nNAME: ${player.name}`, 
+                `\nLASTNAME: ${player.lastname}`,
+                `\nPOSITION: ${player.position}\n`));
 
 
 /**
@@ -31,12 +31,12 @@ const players = getPlayers();
 // Your code
 
 //bouble sort could work as well
-// const playerNames = players.map(player => player.name);
+const playerNames = players.map(player => player.name);
 
-// const orderedPlayerList = playerNames.sort((player1, player2) =>  player2.length -  player1.length);
+const orderedPlayerList = playerNames.sort((player1, player2) =>  player2.length -  player1.length);
 
 
-//  console.log(orderedPlayerList);
+console.log(orderedPlayerList);
 
 
 
@@ -50,14 +50,14 @@ const players = getPlayers();
  */
 
 // Your code
-// // create a new array just with the scores
-// const scors = players.map(player => player.scoringChance);
-// // calcualte the sum of the array called "scors"
-// const reducer = (previousValue, currentValue) => (previousValue + currentValue) / 100;
-// // dispaly the number in to 2 decimal places
-// const sumOfScores = ((scors.reduce(reducer)) * 10).toFixed(2) ;
+// create a new array just with the scores
+const scors = players.map(player => player.scoringChance);
+// calcualte the sum of the array called "scors"
+const sum = (previousValue, currentValue) => (previousValue + currentValue) / 100;
+// dispaly the number in to 2 decimal places
+const sumOfScores = ((scors.reduce(sum)) * 10).toFixed(2) ;
 
-// console.log(`Goals per match: ${sumOfScores}`);
+console.log(`Goals per match: ${sumOfScores}`);
 
 /**
  * Test 4
@@ -87,3 +87,43 @@ playerName( "Diego");
  */
 
 // Your code
+
+// randomise the "players" array 
+const shuffle = (a) => {
+    let i, j, x;
+    for (i = a.length - 1; i >0; i--){
+
+        j = Math.floor(Math.random() * (i + 1));
+        
+        x = a[i];
+        
+        // shawapping the elemnts
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
+
+// split the randomise array into two group: Team A & Team B
+const teamA= shuffle([...players]);
+const teamB = teamA.splice(0, players.length >> 1);
+
+
+//creating a new array with the scoringChance for each team
+const scorsA = teamA.map(player => player.scoringChance);
+//create a sum using the "sumA" function
+const sumA = (previousValue, currentValue) => (previousValue + currentValue);
+//make the closest integer from sumA
+const sumOfScoresA = Math.ceil((scorsA.reduce(sumA))/ 100);
+
+//creating a new array with the scoringChance for each team
+const scorsB = teamB.map(player => player.scoringChance);
+//create a sum using the "sumB" function
+const sumB = (previousValue, currentValue) => (previousValue + currentValue);
+//make the closest integer from sumB
+const sumOfScoresB = Math.ceil((scorsB.reduce(sumB))/ 100);
+
+//display the scores on the terminal 
+console.log(`The "Team A" score is ${sumOfScoresA}.`);
+console.log(`The "Team B" score is ${sumOfScoresB}.`);
