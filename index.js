@@ -65,14 +65,16 @@ const players = getPlayers();
  */
 
 // Your code
-const playerName = (name) =>{
-    if(name === `${players.name}`){
-        console.log("yes you did it!!");
-    }
-    console.log("Sorry not this time!!")
-}
 
-console.log(playerName("Andre"));
+
+const playerName = (name) =>{
+    //find the object in the array by the imput "name"
+    let selectedPlayer = players.find(player => player.name === name);
+    console.log(selectedPlayer.position);
+}
+//calling the function with the "name"
+playerName( "Diego");
+
 
 
 /**
