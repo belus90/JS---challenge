@@ -29,11 +29,9 @@ export const Test1Component = (props: ITest1ComponentProps) => {
         {props.age >= 18 ? 
         <h1 style={{ color: "blue" }}>{props.name}</h1> :
         <h1 style={{ color: "red" }}>{props.name}</h1>}
-    
-    
     </div>
     )
-    }
+    };
 
 
 

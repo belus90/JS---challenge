@@ -30,15 +30,11 @@ players.forEach((player, index) =>
 
 // Your code
 
-//bouble sort could work as well
 const playerNames = players.map(player => player.name);
 
 const orderedPlayerList = playerNames.sort((player1, player2) =>  player2.length -  player1.length);
 
-
 console.log(orderedPlayerList);
-
-
 
 
 /**
